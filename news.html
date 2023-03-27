@@ -37,10 +37,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="GDPR.html">GDPR</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="references-harvard-style.html">Bibliography</a>
+                </li>
             </ul>
         </nav>
-
         <div class="container">
+            <p>Last updated on <span id="timestamp"></span></p>
+            <script>
+                var now = new Date();
+
+                // Format timestamp
+                var formattedDate = now.toLocaleDateString('en-UK', { year: 'numeric', month: 'long', day: 'numeric' });
+                var formattedTime = now.toLocaleTimeString('en-UK', { hour: 'numeric', minute: 'numeric' });
+                var timestamp = formattedDate + ' at ' + formattedTime;
+
+                document.getElementById('timestamp').textContent = timestamp;
+            </script>
+
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <h2 class="text-center mb-5">Latest Cyber News</h2>
@@ -48,11 +62,6 @@
                 </div>
             </div>
         </div>
-        
-
-
-
-
     </body>
 
 
