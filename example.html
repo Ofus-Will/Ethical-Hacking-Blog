@@ -18,7 +18,7 @@
     <nav class="container mb-4">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">Introduction</a>
+                <a class="nav-link" href="ethical_hacking.html">Introduction</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="example.html">Examples</a>
@@ -29,146 +29,30 @@
             <li class="nav-item">
                 <a class="nav-link" href="news.html">Data Explosure News</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="GDPR.html">GDPR</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="references-harvard-style.html">Bibliography</a>
-            </li>
         </ul>
     </nav>
     <main class="container">
-        <p>Last updated on March 12, 2023, at 12:05 PM</p>
         <article>
-            <h1> Steps in AES encryption with JavaScript and the window.crypto API.</h1>
+            <h1> Safeguarding Sensitive Data: Understanding File Encryption, Decryption, and Consequences of Exposure</h1>
             <hr>
 
             <h3>Introduction</h3>
 
-            <h5 style="color: white;">These examples demonstrate how to use JavaScript and the window.crypto API to
-                perform AES encryption.
-                The steps involve generating a random encryption key, converting a file to a Uint8Array, creating an
-                initialization vector, creating a cipher object, converting the cipher object to an ArrayBuffer, storing
-                the key, IV, and encrypted file in an object, and finally, converting the object to a JSON string.</h5>
+            <h5 style="color: white;">In this video, you'll see the encryption process of an important file and
+                understand its implications. Also, we'll explore a decryption example and the necessary steps required
+                to decrypt an encrypted file. You'll also gain insights into the consequences of an unauthorised
+                interception of our file while in transit to its intended receiver. I'll provide further details on the
+                significance and usage of the file descriptor key, to help understand its importance and purpose in the
+                encryption process.</h5>
 
             <hr>
-            <h2 id="intro">Figure 1: </h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Generating a random encryption key</h5>
-                    <p class="card-text" style="color: black;">Here what we are doing is generate a random encryption
-                        key of 256-bit.</p>
-                    <pre><code>let key = window.crypto.getRandomValues(new Uint8Array(32));</code></pre>
-                    <p style="color: black;">What we are doing in this line of code is generating a random encryption
-                        key of 256 bits. We achieve this by using the getRandomValues function of the window.crypto API
-                        and creating a Uint8Array object called key with a length of 32 bytes to store the generated
-                        key.</p>
-                </div>
-            </div>
-
-            <hr>
-
-            <h2>Figure 2: </h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Converting a file to a Uint8Array</h5>
-                    <p class="card-text" style="color: black;">Here what I’m doing is to convert the file to a
-                        Uint8Array.</p>
-                    <pre><code>let file = new Uint8Array([student-confidential.txt]);</code></pre>
-                    <p class="card-text" style="color: black;">What we are doing in this line of code is creating a
-                        Uint8Array object called
-                        file that contains the data of the file we want to encrypt. We accomplish this by providing the
-                        data as a byte array, which is represented by the array [student-confidential.txt].</p>
-                </div>
-            </div>
-
-            <hr>
-
-            <h2>Figure 3: </h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Creating an initialization vector (IV)</h5>
-                    <p class="card-text" style="color: black;">Here what we are doing is to create an initialization
-                        vector (IV).</p>
-                    <pre><code>let iv = window.crypto.getRandomValues(new Uint8Array(16));</code></pre>
-                    <p class="card-text" style="color: black;">What this line of code does is generate an initialization
-                        vector (IV) - a
-                        random vector of 16 bytes. We create it using the getRandomValues() function of the
-                        window.crypto API. The IV is used to randomize the encryption process, making it much more
-                        secure.</p>
-                </div>
-            </div>
-
-            <hr>
-
-            <h2>Figure 4: </h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Creating a cipher object</h5>
-                    <p class="card-text" style="color: black;">Here what we are doing is create the cipher object.</p>
-                    <pre><code>let cipher = await window.crypto.subtle.encrypt({
-                    name: 'AES-CBC',
-                    iv: iv
-                }, key, file);</code></pre>
-                    <p class="card-text" style="color: black;">What we are doing here is creating a cipher object using
-                        the encrypt() function
-                        of the window.crypto API. This function encrypts the data in the file we created in Figure 2
-                        using the values of the key and IV, and the AES-CBC encryption algorithm. The 'await' keyword is
-                        used to wait for the encryption process to complete before moving on to the next line of code.
-                        Once the encryption is complete, the encrypted data is stored in the cipher object.</p>
-                </div>
-            </div>
-
-            <hr>
-
-
-            <h2>Figure 5: </h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Converting the cipher object to an ArrayBuffer</h5>
-                    <p class="card-text" style="color: black;">Here what we are doing is to convert the cipher object to
-                        an ArrayBuffer.</p>
-                    <pre><code>let encryptedFile = new Uint8Array(await new Response(cipher).arrayBuffer());</code></pre>
-                    <p class="card-text" style="color: black;">What this line of code does is convert the cipher object
-                        into an ArrayBuffer
-                        object called encryptedFile. We accomplish this by creating a new Response object with the
-                        cipher object as input, and then using the arrayBuffer() method on the Response object.</p>
-                </div>
-            </div>
-
-            <hr>
-
-            <h2 id="intro">Figure 6: </h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Storing key, IV, and encrypted file in an object</h5>
-                    <pre><code>let encryptedData = {
-                        key: key,
-                        iv: iv,
-                        data: encryptedFile
-                    };</code></pre>
-                    <p class="card-text" style="color: black;">In this line of code, we create an object called
-                        encryptedData. This object
-                        contains the values of the key, IV, and encryptedFile, which are stored as properties of the
-                        data object.</p>
-                </div>
-            </div>
-
-            <hr>
-
-            <h2 id="intro">Figure 7: </h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Converting encryptedData object to a JSON string</h5>
-                    <pre><code>let encryptedJSON = JSON.stringify(encryptedData);</code></pre>
-                    <p style="color:black">Finally, what we do here is convert the encryptedData object to a JSON string
-                        using the
-                        stringify() method on the JSON object. This allows us to transmit or save the encrypted data as
-                        a string.</p>
-                </div>
-            </div>
-
-
+            <div style="text-align:center;">
+                <h2 id="intro" style="margin:0 auto;">Video:</h2>
+                <video width="640" height="480" controls>
+                  <source src="Ethical Hacking Video.mp4" type="video/mp4">
+                </video>
+              </div>
+              
 
         </article>
     </main>
